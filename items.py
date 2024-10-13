@@ -1,16 +1,18 @@
 weapons_dict = {
-    'sword': {'attack': 2, 'damage': 3, 'arms count': 1, 'type': 'martial'},
-    'mace': {'attack': 1, 'damage': 3, 'arms count': 1, 'type': 'martial'},
-    'staff': {'attack': 3, 'damage': 1, 'arms count': 2, 'type': 'common'}, 
-    'wand': {'attack': 0, 'damage': 0, 'arms count': 1, 'type': 'common'}
+    'mace': {'defense': 0, 'attack': 1, 'damage': 3, 'slot name': 'hand', 'slot value': 1,'requires': 'martial', 'type': 'equip'},
+    'staff': {'defense': 0, 'attack': 3, 'damage': 1, 'slot name': 'hand', 'slot value': 2,'requires': 'common', 'type': 'equip'}, 
+    'sword': {'defense': 0, 'attack': 2, 'damage': 3, 'slot name': 'hand', 'slot value': 1,'requires': 'martial', 'type': 'equip'},
+    'wand': {'defense': 0, 'attack': 0, 'damage': 0, 'slot name': 'hand', 'slot value': 1,'requires': 'common', 'type': 'equip'}
 }
 
 armor_dict = {
-    'shield': {'ac': 1, 'arms count': 1, 'type': 'common'},
-    'armor (chain)': {'ac': 3, 'torso count': 1, 'type': 'martial'},
-    'greaves (chain)': {'ac': 2, 'legs count': 1, 'type': 'martial'},
-    'helmet (metal)': {'ac': 2, 'head count': 1, 'type': 'martial'},
-    'armor (leather)': {'ac': 2, 'torso count': 1, 'type': 'common'},
-    'greaves (leather)': {'ac': 1, 'legs count': 1, 'type': 'common'},
-    'helmet (leather)': {'ac': 1, 'head count': 1, 'type': 'common'}
+    'armor (leather)': {'defense': 2, 'attack': 0, 'damage': 0,'slot name': 'torso', 'slot value': 1,'requires': 'common', 'type': 'equip'},
+    'armor (steel)': {'defense': 3, 'attack': 0, 'damage': 0,'slot name': 'torso', 'slot value': 1,'requires': 'martial', 'type': 'equip'},
+    'greaves (leather)': {'defense': 1, 'attack': 0, 'damage': 0,'slot name': 'legs', 'slot value': 1,'requires': 'common', 'type': 'equip'},
+    'greaves (steel)': {'defense': 2, 'attack': 0, 'damage': 0,'slot name': 'legs', 'slot value': 1,'requires': 'martial', 'type': 'equip'},
+    'helmet (leather)': {'defense': 1, 'attack': 0, 'damage': 0,'slot name': 'head', 'slot value': 1,'requires': 'common', 'type': 'equip'},
+    'helmet (steel)': {'defense': 2, 'attack': 0, 'damage': 0,'slot name': 'head', 'slot value': 1,'requires': 'martial', 'type': 'equip'},
+    'shield': {'defense': 1, 'attack': 0, 'damage': 0,'slot name': 'hand', 'slot value': 1,'requires': 'common', 'type': 'equip'}    
 }
+
+all_items_dict = {**weapons_dict, **armor_dict}

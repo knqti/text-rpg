@@ -1,5 +1,5 @@
 class Player():
-    def __init__(self, name, job, max_hp, current_hp, defense, attack, damage, head_count, torso_count, arms_count, legs_count):
+    def __init__(self, name, job, max_hp, current_hp, defense, attack, damage, head, torso, hand, legs):
         self.game_over = False
         self.name = name
         self.job = job
@@ -8,10 +8,10 @@ class Player():
         self.defense = defense
         self.attack = attack
         self.damage = damage
-        self.head_count = head_count
-        self.torso_count = torso_count
-        self.arms_count = arms_count
-        self.legs_count = legs_count
+        self.head = head
+        self.torso = torso
+        self.hand = hand
+        self.legs = legs
 
 class Monster():
     def __init__(self, name, hp, defense, damage):
@@ -19,3 +19,12 @@ class Monster():
         self.hp = hp
         self.defense = defense
         self.damage = damage
+
+class Item():
+    def __init__(self, type, defense, attack, damage, slot_name, slot_value):
+        self.type = type
+        self.defense = defense
+        self.attack = attack
+        self.damage = damage
+        self.slot_name = slot_name
+        self.slot_value = slot_value

@@ -1,39 +1,8 @@
-import os
-import time
-from classes import *
-from menus import *
-from utils import *
 from combat import *
+from menus import *
+from player import *
 
 
-def player_setup():
-    clear_screen()
-
-    question_name = '\nWhat is your name?\n'
-    typewriter(question_name)
-    input_name = input('>>> ')
-
-    question_job = '\nWhat is your job?\n'
-    typewriter(question_job)
-    print('Select `warrior`, `cleric`, or `mage`.')
-    input_job = input('>>> ').capitalize()
-
-    # Initialize the player object
-    player_obj = Player(
-        name=input_name,
-        job=input_job,
-        max_hp=10,
-        current_hp=10,
-        defense=0,
-        attack=0,
-        damage=0,
-        head_count='',
-        torso_count='',
-        arms_count='',
-        legs_count=''
-    )
-    print(f'\nHello, {player_obj.name} the {player_obj.job}!')
-    return player_obj
 
 title_screen()
 
