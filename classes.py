@@ -1,16 +1,17 @@
 class Player():
-    def __init__(self):
+    def __init__(self, name, job, max_hp, current_hp, defense, attack, damage, head_count, torso_count, arms_count, legs_count):
         self.game_over = False
-        self.name = ''
-        self.job = ''
-        self.hp = 10
-        self.defense = 0
-        self.attack = 0
-        self.damage = 0
-        self.head_count = 1
-        self.torso_count = 1
-        self.arms_count = 2
-        self.legs_count = 1
+        self.name = name
+        self.job = job
+        self.max_hp = max_hp
+        self.current_hp = current_hp
+        self.defense = defense
+        self.attack = attack
+        self.damage = damage
+        self.head_count = head_count
+        self.torso_count = torso_count
+        self.arms_count = arms_count
+        self.legs_count = legs_count
 
 class Monster():
     def __init__(self, name, hp, defense, damage):
