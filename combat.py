@@ -1,11 +1,12 @@
 from random import randint as roll
 from monsters import *
 from classes import *
-
+from utils import *
 
 def random_monster():
     monster_keys_list = list(monsters_dict.keys())
-    result = roll(0, 2)
+    number_of_monsters = len(monster_keys_list)
+    result = roll(0, (number_of_monsters - 1))
     monster = monster_keys_list[result]    
     return monster
 
@@ -17,13 +18,24 @@ def create_monster(monster, monsters_dict:dict):
         name=monster_name,
         hp=stats['hp'],
         defense=stats['defense'],
+        attack=stats['attack'],
         damage=stats['damage']
     )
     return monster_obj
 
-def roll_combat(player:object, monster:object):
-    attack_roll = roll(1, 20) + player.attack
-    defense_roll = roll(1, 20) + player.defense + monster.defense
+def roll_initiative(combat_results_dict:dict):
+    initiative_roll = roll(0, 1)
+
+    if initiative_roll == 0:
+        result = 'monster'
+    elif initiative_roll == 1:
+        result = 'player'
+    
+    combat_results_dict.update({'goes first': result})
+
+def roll_combat(player:object, monster:object, combat_results_dict:dict):       
+    attack_roll = roll(1, 20) + player.attack + monster.defense
+    defense_roll = roll(1, 20) + player.defense + monster.attack
 
     # Attack against monster
     if attack_roll >= 12:
@@ -41,46 +53,81 @@ def roll_combat(player:object, monster:object):
         defense_result = 'success'
         receive_damage = 0
 
-    results_dict = {
+    combat_results_dict.update({
         'attack roll': attack_roll,
         'attack result': attack_result,
         'attack damage': attack_damage,
         'defense roll': defense_roll,
         'defense result': defense_result,
-        'receive damage': receive_damage
-    }
-    return results_dict
+        'receive damage': receive_damage,
+    })
 
-def reduce_hp(player:object, results:dict):
-    receive_damage = results['receive damage']
-    player.current_hp -= receive_damage
+def reduce_hp(character:object, combat_results_dict:dict):
+    # Reduce player's HP
+    if hasattr(character, 'game_over'):
+        player_obj = character
+        damage = combat_results_dict['receive damage']
+        player_obj.current_hp -= damage        
 
-def fight(player:object, monster:object):   
-    combat_results_dict = {}
-    combat_results_dict = roll_combat(player, monster)
+    # Reduce monster's HP
+    else:
+        monster_obj = character
+        damage = combat_results_dict['attack damage']
+        monster_obj.hp -= damage
+
+def fight(player:object, monster:object, combat_results_dict:dict):   
+    roll_initiative(combat_results_dict)
+    roll_combat(player, monster, combat_results_dict)
     
-    if combat_results_dict['defense result'] == 'fail':
-        reduce_hp(player, combat_results_dict)
+    # Player attacks monster 
+    
+    ######### NEED TO FIX THIS IF LOOP ##############
+    
+    if combat_results_dict['goes first'] == 'player':
+        # On hit
+        if combat_results_dict['attack result'] == 'success':
+            # Deal damage
+            reduce_hp(monster, combat_results_dict)
 
-    return combat_results_dict
+            typewriter(f'\nYou hit the {monster.name}!')
 
-        # print(f'Your HP is {player_obj.current_hp}')
-        # print(f'You took {combat_results_dict['receive damage']} damage')
-        # hp_bar = '#' * player_obj.current_hp
-        # empty_bar = ' ' * (player_obj.max_hp - player_obj.current_hp)
-        # print(f'HP: {player_obj.current_hp}/{player_obj.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
+            if monster.hp <= 0:
+                combat_results_dict.update({'who died': 'monster'})
 
-    # Temporary player
-    # player_obj = Player(
-    #     name='',
-    #     job='',
-    #     max_hp=10,
-    #     current_hp=10,
-    #     defense=2,
-    #     attack=0,
-    #     damage=1,
-    #     head_count='',
-    #     torso_count='',
-    #     arms_count='',
-    #     legs_count=''
-    # )
+    # Monster attacks player
+    elif combat_results_dict['goes first'] == 'monster':     
+        # On hit
+        if combat_results_dict['defense result'] == 'fail':
+            # Deal damage
+            reduce_hp(player, combat_results_dict)
+
+            typewriter(f'\nIt hit you, ouch...')
+            hp_bar = '#' * player.current_hp
+            empty_bar = ' ' * (player.max_hp - player.current_hp)
+            print(f'HP: {player.current_hp}/{player.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
+
+            if player.current_hp <= 0:
+                combat_results_dict.update({'who died': 'player'})
+
+def encounter(player:object, monster:object):
+    combat_results_dict = {
+        'goes first': None,
+        'attack roll': None,
+        'attack result': None,
+        'attack damage': None,
+        'defense roll': None,
+        'defense result': None,
+        'receive damage': None,
+        'who died': None
+    }
+    while combat_results_dict['who died'] == None:
+        print('\nWhat do you want to do?')
+        print('   - Fight -   ')
+        print('   -  Run  -   ')
+        player_input = input('>>> ').lower().strip()
+
+        if player_input == 'fight':
+            fight(player, monster, combat_results_dict)
+        else:
+            typewriter('\nYou escaped, phew.')
+            return
