@@ -33,7 +33,7 @@ def roll_initiative(combat_results_dict:dict):
     
     combat_results_dict.update({'goes first': result})
 
-def roll_combat(player:object, monster:object, combat_results_dict:dict):       
+def roll_combat(player:object, monster:object, combat_results_dict:dict):
     attack_roll = roll(1, 20) + player.attack + monster.defense
     defense_roll = roll(1, 20) + player.defense + monster.attack
 
@@ -75,39 +75,57 @@ def reduce_hp(character:object, combat_results_dict:dict):
         damage = combat_results_dict['attack damage']
         monster_obj.hp -= damage
 
-def fight(player:object, monster:object, combat_results_dict:dict):   
-    roll_initiative(combat_results_dict)
-    roll_combat(player, monster, combat_results_dict)
-    
-    # Player attacks monster 
-    
-    ######### NEED TO FIX THIS IF LOOP ##############
-    
-    if combat_results_dict['goes first'] == 'player':
-        # On hit
-        if combat_results_dict['attack result'] == 'success':
-            # Deal damage
-            reduce_hp(monster, combat_results_dict)
+def player_turn(monster:object, combat_results_dict:dict):
+    # Player attacks monster
+    if combat_results_dict['attack result'] == 'success':
+        # Deal damage
+        reduce_hp(monster, combat_results_dict)
+        typewriter(f'\nYou hit the {monster.name}!')
+        
+        if monster.hp <= 0:
+            combat_results_dict.update({'who died': 'monster'})
+            typewriter('\n You won the fight :)')
+            
+    else:
+        typewriter('\nYour attack misses.')
 
-            typewriter(f'\nYou hit the {monster.name}!')
-
-            if monster.hp <= 0:
-                combat_results_dict.update({'who died': 'monster'})
-
+def monster_turn(player:object, combat_results_dict:dict):
     # Monster attacks player
-    elif combat_results_dict['goes first'] == 'monster':     
-        # On hit
-        if combat_results_dict['defense result'] == 'fail':
-            # Deal damage
-            reduce_hp(player, combat_results_dict)
+    if combat_results_dict['defense result'] == 'fail':
+        # Deal damage
+        reduce_hp(player, combat_results_dict)
 
-            typewriter(f'\nIt hit you, ouch...')
-            hp_bar = '#' * player.current_hp
-            empty_bar = ' ' * (player.max_hp - player.current_hp)
-            print(f'HP: {player.current_hp}/{player.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
+        typewriter(f'\nIt hit you, ouch...')
+        hp_bar = '#' * player.current_hp
+        empty_bar = ' ' * (player.max_hp - player.current_hp)
+        print(f'HP: {player.current_hp}/{player.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
 
-            if player.current_hp <= 0:
-                combat_results_dict.update({'who died': 'player'})
+        if player.current_hp <= 0:
+            combat_results_dict.update({'who died': 'player'})
+            typewriter('\nYou died :(')
+    
+    else:
+        typewriter(f'\nIts attack misses you.')
+
+def fight(player:object, monster:object, combat_results_dict:dict):   
+    while combat_results_dict['who died'] == None:
+        print('\nWhat do you want to do?')
+        print('   -  Attack  -   ')
+        print('   -   Run    -   ')
+        player_input = input('>>> ').lower().strip()
+
+        if player_input == 'fight':
+            roll_combat(player, monster, combat_results_dict)
+        elif player_input == 'run':
+            typewriter('\nYou escaped, phew.')
+            return
+        
+        if combat_results_dict['goes first'] == 'player':
+            player_turn(monster, combat_results_dict)
+            monster_turn(player, combat_results_dict)
+        elif combat_results_dict['goes first'] == 'monster':     
+            monster_turn(player, combat_results_dict)
+            player_turn(monster, combat_results_dict)
 
 def encounter(player:object, monster:object):
     combat_results_dict = {
@@ -120,14 +138,5 @@ def encounter(player:object, monster:object):
         'receive damage': None,
         'who died': None
     }
-    while combat_results_dict['who died'] == None:
-        print('\nWhat do you want to do?')
-        print('   - Fight -   ')
-        print('   -  Run  -   ')
-        player_input = input('>>> ').lower().strip()
-
-        if player_input == 'fight':
-            fight(player, monster, combat_results_dict)
-        else:
-            typewriter('\nYou escaped, phew.')
-            return
+    roll_initiative(combat_results_dict)
+    fight(player, monster, combat_results_dict)
