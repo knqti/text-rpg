@@ -33,18 +33,16 @@ def initialize_item(stats):
 def player_setup():
     clear_screen()
 
-    question_name = '\nWhat is your name?\n'
-    typewriter(question_name)
+    typewriter('\nWhat is your name?')
     input_name = input('>>> ').strip()
 
-    question_job = '\nWhat is your job?\n'
-    typewriter(question_job)
-    print('Select `warrior`, `cleric`, or `mage`.')
+    typewriter('\nWhat is your job?')
+    print('Select `warrior`, `cleric`, or `mage`')
     input_job = input('>>> ').capitalize().strip()
 
     # Initialize the Player object
     player_obj = initialize_player(input_name, input_job)
-    print(f'\nHello, {player_obj.name} the {player_obj.job}!')
+    typewriter(f'\nHello, {player_obj.name} the {player_obj.job}!')
     return player_obj
 
 def search_items_dict(item:str, dictionary:dict):

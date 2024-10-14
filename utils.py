@@ -11,7 +11,8 @@ def clear_screen():
         # Unix system
         os.system('clear')
 
-def typewriter(prompt):
+def typewriter(prompt:str):
     for letter in prompt:
         print(letter, end='', flush=True)
         time.sleep(0.03)
+    print(flush=False)
