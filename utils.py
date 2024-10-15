@@ -16,3 +16,9 @@ def typewriter(prompt:str):
         print(letter, end='', flush=True)
         time.sleep(0.03)
     print(flush=False)
+
+def display_items(dictionary:dict):
+    sorted_dict = dict(sorted(dictionary.items()))
+    
+    for item in sorted_dict.keys():
+        print(f'- {item.capitalize()}')

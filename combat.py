@@ -80,11 +80,11 @@ def player_turn(monster:object, combat_results_dict:dict):
     if combat_results_dict['attack result'] == 'success':
         # Deal damage
         reduce_hp(monster, combat_results_dict)
-        typewriter(f'\nYou hit the {monster.name}!')
+        typewriter(f'\nYou hit the {monster.name} for {combat_results_dict["attack damage"]} damage!')
         
         if monster.hp <= 0:
             combat_results_dict.update({'who died': 'monster'})
-            typewriter('\n You won the fight :)')
+            typewriter(f'\nYou have slain the {monster.name}, huzzah!')
             
     else:
         typewriter('\nYour attack misses.')
@@ -95,7 +95,7 @@ def monster_turn(player:object, combat_results_dict:dict):
         # Deal damage
         reduce_hp(player, combat_results_dict)
 
-        typewriter(f'\nIt hit you, ouch...')
+        typewriter(f'\nIt hits you, ouch...')
         hp_bar = '#' * player.current_hp
         empty_bar = ' ' * (player.max_hp - player.current_hp)
         print(f'HP: {player.current_hp}/{player.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
@@ -114,7 +114,7 @@ def fight(player:object, monster:object, combat_results_dict:dict):
         print('   -   Run    -   ')
         player_input = input('>>> ').lower().strip()
 
-        if player_input == 'fight':
+        if player_input == 'attack':
             roll_combat(player, monster, combat_results_dict)
         elif player_input == 'run':
             typewriter('\nYou escaped, phew.')

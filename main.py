@@ -1,4 +1,5 @@
 from combat import *
+from items import *
 from menus import *
 from player import *
 
@@ -6,22 +7,29 @@ from player import *
 title_screen()
 player_obj = player_setup()
 
-# get items
-typewriter('\nPick a piece of armor.')
-print('Select `armor (leather)`, `helmet (steel)`, or `shield`')
+# Pick armor
+typewriter('\nPick a piece of armor.\n')
+display_items(armors_1_dict)
 selected_armor = input('>>> ')
 equip(player_obj, selected_armor, all_items_dict)
-typewriter(f'\n{selected_armor.capitalize()} equipped!')
 
+# Pick weapon
 typewriter('\nChoose your weapon.')
-print('Select `club`, `staff`, or `sword`')
+display_items(weapons_1_dict)
 selected_weapon = input('>>> ')
 equip(player_obj, selected_weapon, all_items_dict)
-typewriter(f'\n{selected_weapon.capitalize()} equipped!')
 
+# Player sheet
+typewriter('\nDisplay your player sheet? (Yes/No)')
+display_sheet = input('>>> ').lower().strip()
+if display_sheet == 'yes':
+    show_player_sheet(player_obj)
+    input('\nPress enter to continue')
 
-# some encounter
+# Narration
+typewriter(f'\nAnd so {player_obj.name}, the {player_obj.job}, clothed in a {selected_armor.capitalize()} and wielding a {selected_weapon.capitalize()}, set out on their adventure!')
 
+# Some encounter
 while True:
     monster = random_monster()
     monster_obj = create_monster(monster, monsters_dict)
