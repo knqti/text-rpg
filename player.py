@@ -1,6 +1,7 @@
 from classes import *
 from items import all_items_dict
 from utils import clear_screen, typewriter
+from menus import display_player_sheet
 
 
 def initialize_player(name, job):
@@ -26,7 +27,8 @@ def initialize_item(stats):
         defense = stats['defense'],
         attack = stats['attack'],
         damage = stats['damage'],
-        slot = stats['slot']
+        slot = stats['slot'],
+        description= stats['description']
     )
     return item_instance
 
@@ -65,8 +67,7 @@ def unequip(player:object, item:str, items_dict:dict):
     player.damage -= item_obj.damage
     body_part = item_obj.slot
     setattr(player, body_part, None)
-    typewriter(f'\n{item_name.capitalize()} discarded.')
-
+    print(f'\n{item_name.capitalize()} discarded')
 
 def equip(player:object, item:str, items_dict:dict):
     # Get the item stats from the dictionary
@@ -87,13 +88,13 @@ def equip(player:object, item:str, items_dict:dict):
 
     while equipped_item is not None:
         print(f'\nYour {body_part} is occupied')
-        print(f'Do you want to discard your {equipped_item.capitalize()}? (Yes/No)')
+        print(f'Do you want to discard your {equipped_item.capitalize()}? (y/n)')
         update_slot = input('>>> ').lower().strip()
 
-        if update_slot == 'yes':
+        if update_slot == 'y':
             unequip(player, equipped_item, items_dict)
             break
-        elif update_slot == 'no':
+        elif update_slot == 'n':
             typewriter(f'\n{item_name.capitalize()} discarded')
             return
 
@@ -102,6 +103,26 @@ def equip(player:object, item:str, items_dict:dict):
     player.attack += item_obj.attack
     player.damage += item_obj.damage
     setattr(player, body_part, item_name)
-    typewriter(f'\n{item_name.capitalize()} equipped.')
+    print(f'\n{item_name.capitalize()} equipped')
 
+def consume_item(player:object, item:str, items_dict:dict):
+    # Get the item stats from the dictionary
+    item_name = str(item.lower().strip())
+    item_stats = search_items_dict(item_name, items_dict)
 
+    # Initialize the Item object
+    item_obj = initialize_item(item_stats)
+
+    # Check type
+    if item_stats['type'] is not 'consume':
+        print(f'\n{item.capitalize()} cannot be consumed.')
+        return
+    
+    # Update player stats
+    player.defense += item_obj.defense
+    player.attack += item_obj.attack
+    new_hp = player.current_hp + item_obj.damage
+    hp_change = new_hp - player.current_hp
+    player.current_hp = min(new_hp, player.max_hp)
+    display_player_sheet(player)
+    

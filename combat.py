@@ -4,7 +4,7 @@ from classes import *
 from utils import *
 
 def random_monster():
-    monster_keys_list = list(monsters_dict.keys())
+    monster_keys_list = list(monsters_1_dict.keys())
     number_of_monsters = len(monster_keys_list)
     result = roll(0, (number_of_monsters - 1))
     monster = monster_keys_list[result]    
@@ -19,7 +19,8 @@ def create_monster(monster, monsters_dict:dict):
         hp=stats['hp'],
         defense=stats['defense'],
         attack=stats['attack'],
-        damage=stats['damage']
+        damage=stats['damage'],
+        description=stats['description']
     )
     return monster_obj
 

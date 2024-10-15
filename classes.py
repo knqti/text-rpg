@@ -15,17 +15,19 @@ class Player():
         self.legs = legs
 
 class Monster():
-    def __init__(self, name, hp, defense, attack, damage):
+    def __init__(self, name, hp, defense, attack, damage, description):
         self.name = name
         self.hp = hp
         self.defense = defense
         self.attack = attack
         self.damage = damage
+        self.description = description
 
 class Item():
-    def __init__(self, type, defense, attack, damage, slot):
+    def __init__(self, type, defense, attack, damage, slot, description):
         self.type = type
         self.defense = defense
         self.attack = attack
         self.damage = damage
         self.slot = slot
+        self.description = description

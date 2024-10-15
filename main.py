@@ -12,35 +12,37 @@ typewriter('\nPick a piece of armor.\n')
 display_items(armors_1_dict)
 selected_armor = input('>>> ')
 equip(player_obj, selected_armor, all_items_dict)
+typewriter(armors_1_dict[selected_armor]['description'])
 
 # Pick weapon
 typewriter('\nChoose your weapon.')
 display_items(weapons_1_dict)
 selected_weapon = input('>>> ')
 equip(player_obj, selected_weapon, all_items_dict)
+typewriter(weapons_1_dict[selected_weapon]['description'])
 
 # Player sheet
-typewriter('\nDisplay your player sheet? (Yes/No)')
-display_sheet = input('>>> ').lower().strip()
-if display_sheet == 'yes':
-    show_player_sheet(player_obj)
-    input('\nPress enter to continue')
+display_player_sheet(player_obj)
 
 # Narration
-typewriter(f'\nAnd so {player_obj.name}, the {player_obj.job}, clothed in a {selected_armor.capitalize()} and wielding a {selected_weapon.capitalize()}, set out on their adventure!')
+typewriter(f'\nAnd so {player_obj.name}, the {player_obj.job}, donning a {selected_armor.capitalize()} and wielding a {selected_weapon.capitalize()}, begin their adventure!')
 
 # Some encounter
-while True:
-    monster = random_monster()
-    monster_obj = create_monster(monster, monsters_dict)
-    typewriter(f'\nYou wander around when a {monster_obj.name} appears.')
+monster = random_monster()
+monster_obj = create_monster(monster, monsters_1_dict)
+typewriter(f'\nYou wander around when a {monster_obj.name} appears.')
+typewriter(monster_obj.description)
+encounter(player_obj, monster_obj)
 
-    encounter(player_obj, monster_obj)
+# Eat something
+typewriter('\nYou look around and find some stuff:')
+display_items(consumables_1_dict)
+typewriter('\nPick one to eat.')
+selected_consumable = input('>>> ')
+typewriter(f'\n{consumables_1_dict[selected_consumable]["description"]}')
+consume_item(player_obj, selected_consumable, consumables_1_dict)
 
-    print('\nContinue? (y/n)')
-    user_input = input('>>> ')
-    if user_input == 'n':
-        break
+
 
     # results_dict = fight(player_obj, monster_obj)
 
