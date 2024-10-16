@@ -12,9 +12,9 @@ armors_1_dict = {
 }
 
 consumables_1_dict = {
-    'rotten peach': {'defense': 0, 'attack': 0, 'damage': -1, 'slot': None, 'type': 'consume', 'description': 'it smells weird'},
-    'stale bread': {'defense': 0, 'attack': 0, 'damage': 2, 'slot': None, 'type': 'consume', 'description': 'tough, but edible'},
-    'donut': {'defense': 0, 'attack': 0, 'damage': 3, 'slot': None, 'type': 'consume', 'description': 'mmm donut'}
+    'rotten peach': {'defense': 0, 'attack': 0, 'damage': -1, 'slot': None, 'type': 'consume', 'description': 'it is rotten (-1 HP)'},
+    'stale bread': {'defense': 0, 'attack': 0, 'damage': 2, 'slot': None, 'type': 'consume', 'description': 'mold is fiber right? (+2 HP)'},
+    'donut': {'defense': 0, 'attack': 0, 'damage': 3, 'slot': None, 'type': 'consume', 'description': 'mmm donut (+3 HP)'}
 }
 
 
