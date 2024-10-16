@@ -37,11 +37,11 @@ encounter(player_obj, monster_obj)
 # Eat something
 typewriter('\nYou look around and find some stuff:')
 display_items(consumables_1_dict)
-typewriter('\nPick one to eat.')
+typewriter('\nPick one to consume.')
 selected_consumable = input('>>> ')
 typewriter(f'\n{consumables_1_dict[selected_consumable]["description"]}')
 consume_item(player_obj, selected_consumable, consumables_1_dict)
-
+display_player_sheet(player_obj)
 
 
     # results_dict = fight(player_obj, monster_obj)
