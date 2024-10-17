@@ -28,7 +28,8 @@ display_player_sheet(player_obj)
 typewriter(f'\nAnd so {player_obj.name}, the {player_obj.job}, donning a {selected_armor.capitalize()} and wielding a {selected_weapon.capitalize()}, begin their adventure!')
 
 # Some encounter
-monster = random_monster()
+#monster = random_monster()
+monster = 'minotaur'
 monster_obj = create_monster(monster, monsters_1_dict)
 typewriter(f'\nYou wander around when a {monster_obj.name} appears.')
 typewriter(monster_obj.description)

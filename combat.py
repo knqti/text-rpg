@@ -98,7 +98,7 @@ def player_turn(monster:object, combat_results_dict:dict):
 
 def monster_turn(player:object, combat_results_dict:dict):
     # Display defense roll
-    defense_roll = combat_results_dict['attack roll']
+    defense_roll = combat_results_dict['defense roll']
     typewriter('\nDefense roll:')
     display_ascii(defense_roll)
     
@@ -129,33 +129,39 @@ def turn_order(who_goes_first, player:object, monster:object, combat_results_dic
     if who_goes_first == 'player':
         player_turn(monster, combat_results_dict)
         if someone_died(combat_results_dict) is True:
-            return
+            return True
         monster_turn(player, combat_results_dict)
         if someone_died(combat_results_dict) is True:
-            return
+            return True
 
     elif who_goes_first == 'monster':
         monster_turn(player, combat_results_dict)
         if someone_died(combat_results_dict) is True:
-            return
+            return True
         player_turn(monster, combat_results_dict)
         if someone_died(combat_results_dict) is True:
-            return        
+            return True
+    
+    # Nobody died
+    return False
 
 def fight(player:object, monster:object, combat_results_dict:dict):       
-    print('\nWhat do you want to do?')
-    print('   -  Attack  -   ')
-    print('   -   Run    -   ')
-    player_input = input('>>> ').lower().strip()
-
-    if player_input == 'attack':
-        roll_combat(player, monster, combat_results_dict)
-    elif player_input == 'run':
-        typewriter('\nYou escaped, phew.')
-        return
+    death_occurred = False
     
-    who_goes_first = combat_results_dict['goes first']
-    turn_order(who_goes_first, player, monster, combat_results_dict)
+    while death_occurred is False:
+        print('\nWhat do you want to do?')
+        print('   -  Attack  -   ')
+        print('   -   Run    -   ')
+        player_input = input('>>> ').lower().strip()
+
+        if player_input == 'attack':
+            roll_combat(player, monster, combat_results_dict)
+        elif player_input == 'run':
+            typewriter('\nYou escaped, phew.')
+            return
+        
+        who_goes_first = combat_results_dict['goes first']
+        death_occurred = turn_order(who_goes_first, player, monster, combat_results_dict)
 
 def encounter(player:object, monster:object):
     combat_results_dict = {

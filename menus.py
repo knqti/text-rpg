@@ -66,4 +66,4 @@ def display_player_sheet(player:object):
         print(f'Legs: {player.legs}')
         print('#' * page_width)
 
-        input('\nPress enter to continue')
+    input('\nPress enter to continue')
