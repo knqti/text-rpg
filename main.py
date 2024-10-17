@@ -43,28 +43,3 @@ typewriter(f'\n{consumables_1_dict[selected_consumable]["description"]}')
 consume_item(player_obj, selected_consumable, consumables_1_dict)
 display_player_sheet(player_obj)
 
-
-    # results_dict = fight(player_obj, monster_obj)
-
-    # if results_dict['defense result'] == 'fail':
-    #     typewriter(f'\nIt hit you, ouch...')
-    #     print(f'Received {results_dict['receive damage']} of damage.')
-    #     hp_bar = '#' * player_obj.current_hp
-    #     empty_bar = ' ' * (player_obj.max_hp - player_obj.current_hp)
-    #     print(f'HP: {player_obj.current_hp}/{player_obj.max_hp}')
-    #     print(f'{player_obj.current_hp}/{player_obj.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
-        
-    #     if player_obj.current_hp <= 0:
-    #         typewriter('\nYou died :(')
-    #         break
-
-    #     print('\nContinue? (y/n)')
-    #     user_input = input('>>> ')
-    #     if user_input == 'n':
-    #         break
-    # else:
-    #     typewriter('\nYou escaped, phew...')
-    #     print('\nContinue? (y/n)')
-    #     user_input = input('>>> ')
-    #     if user_input == 'n':
-    #         break

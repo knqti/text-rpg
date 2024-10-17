@@ -22,3 +22,12 @@ def display_items(dictionary:dict):
     
     for item in sorted_dict.keys():
         print(f'- {item.capitalize()}')
+
+def display_ascii(file_name):
+    directory_path = './assets/'
+    file_suffix = '_standard.txt'
+    full_file_path = directory_path + str(file_name) + file_suffix
+
+    with open(full_file_path, 'r') as file:
+        content = file.read()
+        print(content)

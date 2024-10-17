@@ -78,6 +78,11 @@ def reduce_hp(character:object, combat_results_dict:dict):
         monster_obj.hp -= damage
 
 def player_turn(monster:object, combat_results_dict:dict):
+    # Display attack roll
+    attack_roll = combat_results_dict['attack roll']
+    typewriter('\nAttack roll:')
+    display_ascii(attack_roll)
+    
     # Player attacks monster
     if combat_results_dict['attack result'] == 'success':
         # Deal damage
@@ -92,6 +97,11 @@ def player_turn(monster:object, combat_results_dict:dict):
         typewriter('\nYour attack misses.')
 
 def monster_turn(player:object, combat_results_dict:dict):
+    # Display defense roll
+    defense_roll = combat_results_dict['attack roll']
+    typewriter('\nDefense roll:')
+    display_ascii(defense_roll)
+    
     # Monster attacks player
     if combat_results_dict['defense result'] == 'fail':
         # Deal damage
