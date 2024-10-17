@@ -1,7 +1,7 @@
 from classes import *
 from items import all_items_dict
 from utils import clear_screen, typewriter
-from menus import display_player_sheet
+from menus import display_player_stats
 
 
 def initialize_player(name, job):
@@ -124,5 +124,4 @@ def consume_item(player:object, item:str, items_dict:dict):
     new_hp = player.current_hp + item_obj.damage
     hp_change = new_hp - player.current_hp
     player.current_hp = min(new_hp, player.max_hp)
-    display_player_sheet(player)
     

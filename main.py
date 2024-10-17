@@ -22,7 +22,7 @@ equip(player_obj, selected_weapon, all_items_dict)
 typewriter(weapons_1_dict[selected_weapon]['description'])
 
 # Player sheet
-display_player_sheet(player_obj)
+display_player_stats(player_obj)
 
 # Narration
 typewriter(f'\nAnd so {player_obj.name}, the {player_obj.job}, donning a {selected_armor.capitalize()} and wielding a {selected_weapon.capitalize()}, begin their adventure!')
@@ -42,5 +42,5 @@ typewriter('\nPick one to consume.')
 selected_consumable = input('>>> ')
 typewriter(f'\n{consumables_1_dict[selected_consumable]["description"]}')
 consume_item(player_obj, selected_consumable, consumables_1_dict)
-display_player_sheet(player_obj)
+display_player_stats(player_obj)
 
