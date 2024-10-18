@@ -17,9 +17,7 @@ consumables_1_dict = {
     'donut': {'defense': 0, 'attack': 0, 'damage': 3, 'slot': None, 'type': 'consume', 'description': 'mmm donut (+3 HP)'}
 }
 
-
-
-all_items_dict = {
+all_items_1_dict = {
     **weapons_1_dict, 
     **armors_1_dict,
     **consumables_1_dict

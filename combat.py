@@ -3,8 +3,8 @@ from monsters import *
 from classes import *
 from utils import *
 
-def random_monster():
-    monster_keys_list = list(monsters_1_dict.keys())
+def random_monster(dictionary:dict):
+    monster_keys_list = list(dictionary.keys())
     number_of_monsters = len(monster_keys_list)
     result = roll(0, (number_of_monsters - 1))
     monster = monster_keys_list[result]    

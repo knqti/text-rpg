@@ -1,5 +1,5 @@
-room_1_start = {
-    'name': 'level 1 floor',    
+room_1_dict = {
+    'name': 'noob room',
     'monster_a': None,
     'monster_b': None,
     'monster_c': None,
@@ -9,7 +9,7 @@ room_1_start = {
     'description': 'get pwned noob'
 }
 
-room_2_crypt = {
+room_2_dict = {
     'name': 'crypt',    
     'monster_a': None,
     'monster_b': None,
@@ -20,7 +20,7 @@ room_2_crypt = {
     'description': 'it smells of mold'
 }
 
-room_2_dungeon = {
+room_3_dict = {
     'name': 'dungeon',
     'monster_a': None,
     'monster_b': None,

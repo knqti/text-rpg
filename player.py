@@ -1,5 +1,5 @@
 from classes import *
-from items import all_items_dict
+from items import all_items_1_dict
 from utils import clear_screen, typewriter
 from menus import display_player_stats
 
