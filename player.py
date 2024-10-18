@@ -78,7 +78,7 @@ def equip(player:object, item:str, items_dict:dict):
     item_obj = initialize_item(item_stats)
 
     # Check type
-    if item_stats['type'] is not 'equip':
+    if item_stats['type'] != 'equip':
         print(f'\n{item.capitalize()} cannot be equipped.')
         return
 
@@ -114,7 +114,7 @@ def consume_item(player:object, item:str, items_dict:dict):
     item_obj = initialize_item(item_stats)
 
     # Check type
-    if item_stats['type'] is not 'consume':
+    if item_stats['type'] != 'consume':
         print(f'\n{item.capitalize()} cannot be consumed.')
         return
     
