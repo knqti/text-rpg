@@ -14,15 +14,13 @@ player_obj = player_setup()
 typewriter('\nPick a piece of armor.\n')
 display_items(armors_1_dict)
 selected_armor = input('>>> ')
-equip(player_obj, selected_armor, all_items_1_dict)
-typewriter(armors_1_dict[selected_armor]['description'])
+equip(player_obj, selected_armor, armors_1_dict)
 
 # Pick weapon
 typewriter('\nChoose your weapon.')
 display_items(weapons_1_dict)
 selected_weapon = input('>>> ')
-equip(player_obj, selected_weapon, all_items_1_dict)
-typewriter(weapons_1_dict[selected_weapon]['description'])
+equip(player_obj, selected_weapon, weapons_1_dict)
 
 # Player sheet
 display_player_stats(player_obj)

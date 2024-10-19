@@ -1,5 +1,5 @@
 from classes import *
-from items import all_items_1_dict
+from items import all_items_dict
 from utils import clear_screen, typewriter
 from menus import display_player_stats
 
@@ -104,6 +104,7 @@ def equip(player:object, item:str, items_dict:dict):
     player.damage += item_obj.damage
     setattr(player, body_part, item_name)
     print(f'\n{item_name.capitalize()} equipped')
+    typewriter(f'{item_obj.description}')
 
 def consume_item(player:object, item:str, items_dict:dict):
     # Get the item stats from the dictionary
