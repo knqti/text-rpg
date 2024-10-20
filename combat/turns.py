@@ -1,10 +1,14 @@
+from utils import display_ascii, typewriter
+from .reduce_hp import reduce_hp
+
+
 def someone_died(combat_results_dict: dict):
     if combat_results_dict['who died'] == None:
         return False
     else:
         return True
 
-def player_turn(monster:object, combat_results_dict:dict):
+def player_turn(Monster_obj:object, combat_results_dict:dict):
     # Display attack roll
     attack_roll = combat_results_dict['attack roll']
     typewriter('\nAttack roll:')
@@ -13,17 +17,17 @@ def player_turn(monster:object, combat_results_dict:dict):
     # Player attacks monster
     if combat_results_dict['attack result'] == 'success':
         # Deal damage
-        reduce_hp(monster, combat_results_dict)
-        typewriter(f'\nYou hit the {monster.name} for {combat_results_dict["attack damage"]} damage!')
+        reduce_hp(Monster_obj, combat_results_dict)
+        typewriter(f'\nYou hit the {Monster_obj.name} for {combat_results_dict["attack damage"]} damage!')
         
-        if monster.hp <= 0:
+        if Monster_obj.hp <= 0:
             combat_results_dict.update({'who died': 'monster'})
-            typewriter(f'\nYou have slain the {monster.name}, huzzah!')
+            typewriter(f'\nYou have slain the {Monster_obj.name}, huzzah!')
             
     else:
         typewriter('\nYour attack misses.')
 
-def monster_turn(player:object, combat_results_dict:dict):
+def monster_turn(Player_obj:object, combat_results_dict:dict):
     # Display defense roll
     defense_roll = combat_results_dict['defense roll']
     typewriter('\nDefense roll:')
@@ -32,34 +36,34 @@ def monster_turn(player:object, combat_results_dict:dict):
     # Monster attacks player
     if combat_results_dict['defense result'] == 'fail':
         # Deal damage
-        reduce_hp(player, combat_results_dict)
+        reduce_hp(Player_obj, combat_results_dict)
 
         typewriter(f'\nIt hits you, ouch...')
-        hp_bar = '#' * player.current_hp
-        empty_bar = ' ' * (player.max_hp - player.current_hp)
-        print(f'HP: {player.current_hp}/{player.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
+        hp_bar = '#' * Player_obj.current_hp
+        empty_bar = ' ' * (Player_obj.max_hp - Player_obj.current_hp)
+        print(f'HP: {Player_obj.current_hp}/{Player_obj.max_hp} [' + f'{hp_bar}' + f'{empty_bar}' + ']')
 
-        if player.current_hp <= 0:
+        if Player_obj.current_hp <= 0:
             combat_results_dict.update({'who died': 'player'})
             typewriter('\nYou died :(')
     
     else:
         typewriter(f'\nIts attack misses you.')
 
-def turn_order(who_goes_first, player:object, monster:object, combat_results_dict:dict):
+def turn_order(who_goes_first, Player_obj:object, Monster_obj:object, combat_results_dict:dict):
     if who_goes_first == 'player':
-        player_turn(monster, combat_results_dict)
+        player_turn(Monster_obj, combat_results_dict)
         if someone_died(combat_results_dict) is True:
             return True
-        monster_turn(player, combat_results_dict)
+        monster_turn(Player_obj, combat_results_dict)
         if someone_died(combat_results_dict) is True:
             return True
 
     elif who_goes_first == 'monster':
-        monster_turn(player, combat_results_dict)
+        monster_turn(Player_obj, combat_results_dict)
         if someone_died(combat_results_dict) is True:
             return True
-        player_turn(monster, combat_results_dict)
+        player_turn(Monster_obj, combat_results_dict)
         if someone_died(combat_results_dict) is True:
             return True
     

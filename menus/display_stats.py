@@ -1,4 +1,7 @@
-def display_player_stats(player:object):
+from utils import typewriter
+
+
+def display_player_stats(Player_obj:object):
     typewriter('\nDisplay your player stats? (y/n)')
     display_sheet = input('>>> ').lower().strip()
     
@@ -10,17 +13,17 @@ def display_player_stats(player:object):
         print('\n')
         print('#' * page_width)
         print(empty_padding + title + empty_padding)
-        print(empty_padding + f'Name: {player.name}')
-        print(empty_padding + f'Job: {player.job}')
-        print(empty_padding + f'HP: {player.current_hp}/{player.max_hp}')
-        print(empty_padding + f'Defense: {player.defense}')
-        print(empty_padding + f'Attack: {player.attack}')
-        print(empty_padding + f'Damage: {player.damage}')
-        print(empty_padding + f'Head: {player.head}')
-        print(empty_padding + f'Torso: {player.torso}')
-        print(empty_padding + f'Hand 1: {player.hand_1}')
-        print(empty_padding + f'Hand 2: {player.hand_2}')
-        print(empty_padding + f'Legs: {player.legs}')
+        print(empty_padding + f'Name: {Player_obj.name}')
+        print(empty_padding + f'Job: {Player_obj.job}')
+        print(empty_padding + f'HP: {Player_obj.current_hp}/{Player_obj.max_hp}')
+        print(empty_padding + f'Defense: {Player_obj.defense}')
+        print(empty_padding + f'Attack: {Player_obj.attack}')
+        print(empty_padding + f'Damage: {Player_obj.damage}')
+        print(empty_padding + f'Head: {Player_obj.head}')
+        print(empty_padding + f'Torso: {Player_obj.torso}')
+        print(empty_padding + f'Hand 1: {Player_obj.hand_1}')
+        print(empty_padding + f'Hand 2: {Player_obj.hand_2}')
+        print(empty_padding + f'Legs: {Player_obj.legs}')
         print('#' * page_width)
 
         input('\nPress enter to continue')

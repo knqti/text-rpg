@@ -1,3 +1,7 @@
+from .fight import fight
+from .roll_initiative import roll_initiative
+
+
 def encounter(player:object, monster:object):
     combat_results_dict = {
         'goes first': None,

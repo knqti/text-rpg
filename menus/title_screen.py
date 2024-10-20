@@ -1,3 +1,7 @@
+import sys
+from .help_menu import help_menu
+
+
 def title_screen_selections():
     while True:
         print('\n')

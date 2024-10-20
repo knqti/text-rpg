@@ -1,11 +1,14 @@
-def roll_combat(player:object, monster:object, combat_results_dict:dict):
-    attack_roll = roll(1, 20) + player.attack + monster.defense
-    defense_roll = roll(1, 20) + player.defense + monster.attack
+from random import randint as roll
+
+
+def roll_combat(Player_obj:object, Monster_obj:object, combat_results_dict:dict):
+    attack_roll = roll(1, 20) + Player_obj.attack + Monster_obj.defense
+    defense_roll = roll(1, 20) + Player_obj.defense + Monster_obj.attack
 
     # Attack against monster
     if attack_roll >= 12:
         attack_result = 'success'
-        attack_damage = player.damage        
+        attack_damage = Player_obj.damage        
     else:
         attack_result = 'fail'
         attack_damage = 0
@@ -13,7 +16,7 @@ def roll_combat(player:object, monster:object, combat_results_dict:dict):
     # Defend from monster
     if defense_roll < 12:
         defense_result = 'fail'
-        receive_damage = monster.damage
+        receive_damage = Monster_obj.damage
     else:        
         defense_result = 'success'
         receive_damage = 0
