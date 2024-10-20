@@ -1,8 +1,8 @@
-import sys
-from .help_menu import help_menu
+from utils import player_input
+from menus import help_menu, quit_game
 
 
-def title_screen_selections():
+def title_screen():
     while True:
         print('\n')
         print('====================')
@@ -12,16 +12,14 @@ def title_screen_selections():
         print('      - Help -      ')
         print('      - Quit -      ')        
         
-        option = input('>>> ').lower().strip()
+        option = input('\n>>> ')
 
         if option == 'play':
             return
         elif option == 'help':
             help_menu()
-            continue
         elif option == 'quit':
-            sys.exit()
+            quit_game()
         else:
             print('\nInvalid option.')
             print('Type `play`, `help`, or `quit` and press enter.')
-            continue

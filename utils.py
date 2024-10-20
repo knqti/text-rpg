@@ -1,6 +1,6 @@
 import os
+import platform
 import time
-from sys import platform
 
 
 def clear_screen():
@@ -32,3 +32,21 @@ def display_ascii(file_name):
         content = file.read()
         print(content)
 
+def player_input(Player_obj:object):
+    from menus import help_menu, quit_game, display_player_stats
+
+    while True:
+        player_typed = input('>>> ').lower().strip()
+
+        if player_typed == 'help':
+            help_menu
+            continue
+        elif player_typed == 'quit':
+            quit_game
+        elif player_typed == 'stats':
+            display_player_stats(Player_obj)
+            continue
+        
+        break
+
+    return player_typed

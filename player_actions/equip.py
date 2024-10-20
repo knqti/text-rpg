@@ -32,6 +32,6 @@ def equip(Player_obj:object, item:str, items_dict:dict):
     Player_obj.defense += Item_To_Equip_obj.defense
     Player_obj.attack += Item_To_Equip_obj.attack
     Player_obj.damage += Item_To_Equip_obj.damage
-    setattr(Player_obj, body_part, Item_To_Equip_obj)
+    setattr(Player_obj, body_part, Item_To_Equip_obj.name)
     print(f'\n{Item_To_Equip_obj.name} equipped')
     typewriter(f'{Item_To_Equip_obj.description}')

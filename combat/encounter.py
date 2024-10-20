@@ -2,7 +2,7 @@ from .fight import fight
 from .roll_initiative import roll_initiative
 
 
-def encounter(player:object, monster:object):
+def encounter(Player_obj:object, Monster_obj:object):
     combat_results_dict = {
         'goes first': None,
         'attack roll': None,
@@ -13,5 +13,5 @@ def encounter(player:object, monster:object):
         'receive damage': None,
         'who died': None
     }
-    roll_initiative(combat_results_dict, monster)
-    fight(player, monster, combat_results_dict)
+    roll_initiative(combat_results_dict, Monster_obj)
+    fight(Player_obj, Monster_obj, combat_results_dict)
