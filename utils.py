@@ -19,9 +19,13 @@ def typewriter(prompt:str):
 
 def display_items(dictionary:dict):
     sorted_dict = dict(sorted(dictionary.items()))
-    
+    displayed_list = []
+
     for item in sorted_dict.keys():
         print(f'- {item.capitalize()}')
+        displayed_list.append(item)
+    
+    return displayed_list
 
 def display_ascii(file_name):
     directory_path = './assets/'
@@ -39,10 +43,10 @@ def player_input(Player_obj:object):
         player_typed = input('>>> ').lower().strip()
 
         if player_typed == 'help':
-            help_menu
+            help_menu()
             continue
         elif player_typed == 'quit':
-            quit_game
+            quit_game()
         elif player_typed == 'stats':
             display_player_stats(Player_obj)
             continue

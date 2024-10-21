@@ -1,8 +1,7 @@
 class Player():
-    def __init__(self, name, job, max_hp, current_hp, defense, attack, damage, head, torso, hand_1, hand_2, legs):
+    def __init__(self, name, max_hp, current_hp, defense, attack, damage, head, torso, hand_1, hand_2, legs):
         self.game_over = False
         self.name = name
-        self.job = job
         self.max_hp = max_hp
         self.current_hp = current_hp
         self.defense = defense

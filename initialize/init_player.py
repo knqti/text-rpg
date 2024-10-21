@@ -1,10 +1,9 @@
 from classes import Player
 
 
-def init_player(name, job):
+def init_player(name):
     player_instance  =  Player(
         name = name,
-        job = job,
         max_hp = 10,
         current_hp = 10,
         defense = 0,

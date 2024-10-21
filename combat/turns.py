@@ -22,6 +22,7 @@ def player_turn(Monster_obj:object, combat_results_dict:dict):
         
         if Monster_obj.hp <= 0:
             combat_results_dict.update({'who died': 'monster'})
+            combat_results_dict.update({'gets loot': True})
             typewriter(f'\nYou have slain the {Monster_obj.name}, huzzah!')
             
     else:
