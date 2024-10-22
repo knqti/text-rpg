@@ -1,4 +1,3 @@
-from utils import player_input
 from menus import help_menu, quit_game
 
 
@@ -12,7 +11,7 @@ def title_screen():
         print('      - Help -      ')
         print('      - Quit -      ')        
         
-        option = input('\n>>> ')
+        option = input('\n>>> ').lower().strip()
 
         if option == 'play':
             return

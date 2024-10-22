@@ -12,7 +12,7 @@ def fight(Player_obj:object, Monster_obj:object, combat_results_dict:dict):
         print('   -  Attack  -   ')
         print('   -   Run    -   ')
         
-        option = player_input(Player_obj)
+        option = player_input(Player_obj, ['attack', 'run'])
 
         if option == 'attack':
             roll_combat(Player_obj, Monster_obj, combat_results_dict)

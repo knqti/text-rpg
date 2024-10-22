@@ -16,22 +16,22 @@ def player_setup():
     # Pick armor
     typewriter('\nPick an armor.')
     armor_list = display_items(armors_1_dict)
-    input_armor = player_input(Player_obj)
+    input_armor = player_input(Player_obj, armor_list)
 
-    while input_armor not in armor_list:
-        print('Invalid choice. Try again.')
-        input_armor = player_input(Player_obj)
+    # while input_armor not in armor_list:
+    #     print('Invalid choice. Try again.')
+    #     input_armor = player_input(Player_obj)
     
     equip(Player_obj, input_armor, armors_1_dict)
     
     # Pick weapon
     typewriter('\nPick a weapon.')
     weapon_list = display_items(weapons_1_dict)
-    input_weapon = player_input(Player_obj)
+    input_weapon = player_input(Player_obj, weapon_list)
     
-    while input_weapon not in weapon_list:
-        print('Invalid choice. Try again.')
-        input_weapon = player_input(Player_obj)
+    # while input_weapon not in weapon_list:
+    #     print('Invalid choice. Try again.')
+    #     input_weapon = player_input(Player_obj)
         
     equip(Player_obj, input_weapon, weapons_1_dict)
 

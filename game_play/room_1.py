@@ -10,7 +10,7 @@ def room_1(Player_obj:object):
     monster_a = random_monster(monsters_1_dict)
     Monster_obj = init_monster(monster_a, monsters_1_dict)
 
-    typewriter(f'\nYou walk into a dimly-lit dungeon.')
+    typewriter(f'\nYou wake up in a dimly-lit dungeon. Slowly, you walk toward a hallway.')
     typewriter(f'Stale dust and the smell of mold waft into your nose. Just as you\'re about to turn the corner, you hear:')
     typewriter(f'{Monster_obj.description}')
     typewriter(f'\nA {Monster_obj.name} appeared!')
@@ -20,10 +20,10 @@ def room_1(Player_obj:object):
     # Loot
     if combat_results_dict['gets loot']:
         typewriter(f'\nSome items drop from the {Monster_obj.name}\'s lifeless form.')
-        display_items(consumables_1_dict)
+        item_list = display_items(consumables_1_dict)
 
         typewriter('\nPick one to consume.')
-        item_to_eat = player_input(Player_obj)
+        item_to_eat = player_input(Player_obj, item_list)
 
         typewriter(f'\n{consumables_1_dict[item_to_eat]["description"]}')
         consume_item(Player_obj, item_to_eat, consumables_1_dict)
@@ -44,22 +44,22 @@ def room_1(Player_obj:object):
     typewriter(f'\nYou realize the {Monster_obj.name} was guarding a crate. You open it and find:')
 
     # Pick armor
-    display_items(armors_2_dict)
+    armor_list = display_items(armors_2_dict)
     typewriter('\nPick one.')
-    selected_armor = player_input(Player_obj)
+    selected_armor = player_input(Player_obj, armor_list)
     equip(Player_obj, selected_armor, all_items_dict)
 
     # Pick weapon
     typewriter('\nRummaging further, you also see:')
-    display_items(weapons_2_dict)
+    weapon_list = display_items(weapons_2_dict)
     typewriter('\nPick one.')
-    selected_weapon = player_input(Player_obj)
+    selected_weapon = player_input(Player_obj, weapon_list)
     equip(Player_obj, selected_weapon, all_items_dict)
     
     # Rest
     typewriter('\nYou make your way to a staircase. A small shrine sits at the bottom.')
     typewriter('Take a short rest? (y/n)')
-    rest_choice = player_input(Player_obj)
+    rest_choice = player_input(Player_obj, ['y', 'n'])
 
     if rest_choice == 'y':
         Player_obj.current_hp = Player_obj.max_hp

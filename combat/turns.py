@@ -46,7 +46,6 @@ def monster_turn(Player_obj:object, combat_results_dict:dict):
 
         if Player_obj.current_hp <= 0:
             combat_results_dict.update({'who died': 'player'})
-            typewriter('\nYou died :(')
     
     else:
         typewriter(f'\nIts attack misses you.')

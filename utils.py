@@ -36,7 +36,7 @@ def display_ascii(file_name):
         content = file.read()
         print(content)
 
-def player_input(Player_obj:object):
+def player_input(Player_obj:object, acceptable_list:list):
     from menus import help_menu, quit_game, display_player_stats
 
     while True:
@@ -49,6 +49,9 @@ def player_input(Player_obj:object):
             quit_game()
         elif player_typed == 'stats':
             display_player_stats(Player_obj)
+            continue        
+        elif player_typed not in acceptable_list:
+            print('\nInvalid command. Try again.\n')
             continue
         
         break
