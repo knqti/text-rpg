@@ -1,7 +1,7 @@
 from combat import encounter, random_monster
 from dictionaries import monsters_2_dict
 from initialize import init_monster
-from utils import typewriter
+from utils import display_ascii, typewriter
 
 
 def room_2(Player_obj:object):
@@ -14,4 +14,6 @@ def room_2(Player_obj:object):
     typewriter(f'{Monster_obj.description}')
 
     # Encounter C
-    combat_results_dict = encounter(Player_obj, Monster_obj)
+    encounter(Player_obj, Monster_obj)
+    if Player_obj.game_over == True:
+        return

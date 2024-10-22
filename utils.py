@@ -14,7 +14,7 @@ def clear_screen():
 def typewriter(prompt:str):
     for letter in prompt:
         print(letter, end='', flush=True)
-        time.sleep(0.03)
+        time.sleep(0.05)
     print(flush=False)
 
 def display_items(dictionary:dict):
@@ -27,9 +27,8 @@ def display_items(dictionary:dict):
     
     return displayed_list
 
-def display_ascii(file_name):
-    directory_path = './assets/'
-    file_suffix = '_standard.txt'
+def display_ascii(file_name, file_suffix):
+    directory_path = './assets/'        
     full_file_path = directory_path + str(file_name) + file_suffix
 
     with open(full_file_path, 'r') as file:
@@ -49,7 +48,7 @@ def player_input(Player_obj:object, acceptable_list:list):
             quit_game()
         elif player_typed == 'stats':
             display_player_stats(Player_obj)
-            continue        
+            continue
         elif player_typed not in acceptable_list:
             print('\nInvalid command. Try again.\n')
             continue

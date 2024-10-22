@@ -10,12 +10,14 @@ def room_1(Player_obj:object):
     monster_a = random_monster(monsters_1_dict)
     Monster_obj = init_monster(monster_a, monsters_1_dict)
 
-    typewriter(f'\nYou wake up in a dimly-lit dungeon. Slowly, you walk toward a hallway.')
-    typewriter(f'Stale dust and the smell of mold waft into your nose. Just as you\'re about to turn the corner, you hear:')
+    typewriter(f'\nYou wake up in a dimly-lit dungeon and walk toward a hallway.')
+    typewriter(f'Stale dust and the smell of mold waft into your nose. You turn the corner, hearing:')
     typewriter(f'{Monster_obj.description}')
     typewriter(f'\nA {Monster_obj.name} appeared!')
     
     combat_results_dict = encounter(Player_obj, Monster_obj)
+    if Player_obj.game_over == True:
+        return
 
     # Loot
     if combat_results_dict['gets loot']:
@@ -39,6 +41,8 @@ def room_1(Player_obj:object):
     typewriter(f'{Monster_obj.description}')
     
     encounter(Player_obj, Monster_obj)
+    if Player_obj.game_over == True:
+        return
 
     # Upgrade items
     typewriter(f'\nYou realize the {Monster_obj.name} was guarding a crate. You open it and find:')

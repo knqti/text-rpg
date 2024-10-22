@@ -1,17 +1,17 @@
 from menus import help_menu, quit_game
+from utils import display_ascii
 
 
 def title_screen():
-    while True:
-        print('\n')
-        print('====================')
-        print('Welcome to Text RPG!')
-        print('====================')
+    while True:        
+        print('####################')
+        print('#     TEXT RPG     #')
+        print('####################')
         print('      - Play -      ')
         print('      - Help -      ')
         print('      - Quit -      ')        
         
-        option = input('\n>>> ').lower().strip()
+        option = input('\nType here >>> ').lower().strip()
 
         if option == 'play':
             return

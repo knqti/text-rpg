@@ -12,7 +12,7 @@ def player_turn(Monster_obj:object, combat_results_dict:dict):
     # Display attack roll
     attack_roll = combat_results_dict['attack roll']
     typewriter('\nAttack roll:')
-    display_ascii(attack_roll)
+    display_ascii(attack_roll, '_standard.txt')
     
     # Player attacks monster
     if combat_results_dict['attack result'] == 'success':
@@ -32,7 +32,7 @@ def monster_turn(Player_obj:object, combat_results_dict:dict):
     # Display defense roll
     defense_roll = combat_results_dict['defense roll']
     typewriter('\nDefense roll:')
-    display_ascii(defense_roll)
+    display_ascii(defense_roll, '_standard.txt')
     
     # Monster attacks player
     if combat_results_dict['defense result'] == 'fail':
@@ -46,6 +46,7 @@ def monster_turn(Player_obj:object, combat_results_dict:dict):
 
         if Player_obj.current_hp <= 0:
             combat_results_dict.update({'who died': 'player'})
+            Player_obj.game_over = True
     
     else:
         typewriter(f'\nIts attack misses you.')
