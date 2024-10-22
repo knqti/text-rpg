@@ -49,6 +49,8 @@ def player_input(Player_obj:object, acceptable_list:list):
         elif player_typed == 'stats':
             display_player_stats(Player_obj)
             continue
+        elif player_typed == 'restart':
+            return
         elif player_typed not in acceptable_list:
             print('\nInvalid command. Try again.\n')
             continue

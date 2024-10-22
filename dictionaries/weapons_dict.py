@@ -5,7 +5,7 @@ weapons_1_dict = {
 }
 
 weapons_2_dict = {
-    'hammer': {'defense': 0, 'attack': 2, 'damage': 3, 'slot': 'hand_1', 'type': 'equip', 'description': 'can\'t touch this'},
-    'hoe': {'defense': 0, 'attack': 3, 'damage': 2, 'slot': 'hand_1', 'type': 'equip', 'description': 'ditch that, hoe'}, 
-    'ho': {'defense': 0, 'attack': 2, 'damage': 1, 'slot': 'hand_2', 'type': 'equip', 'description': 'oh my GAWD i\'m saved!'}
+    'hammer': {'defense': 0, 'attack': 3, 'damage': 3, 'slot': 'hand_1', 'type': 'equip', 'description': 'can\'t touch this'},
+    'hoe': {'defense': 0, 'attack': 4, 'damage': 2, 'slot': 'hand_1', 'type': 'equip', 'description': 'ditch that, hoe'}, 
+    'ho': {'defense': 0, 'attack': 3, 'damage': 1, 'slot': 'hand_2', 'type': 'equip', 'description': 'oh my GAWD i\'m saved!'}
 }

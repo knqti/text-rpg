@@ -1,7 +1,8 @@
 monsters_1_dict = {
     'slime': {'hp': 3, 'defense': 0, 'attack': 0, 'damage': 1, 'description': '*squelch squelch*'},
     'ghoul': {'hp': 6, 'defense': 0,'attack': -1, 'damage': 2, 'description': 'nom nom...you gonna eat that arm?'},
-    'jake, from state farm': {'hp': 8, 'defense': 0,'attack': -1, 'damage': 4, 'description': 'uhh your policy doesn\'t cover this'}
+    'jake, from state farm': {'hp': 8, 'defense': 0,'attack': 0, 'damage': 4, 'description': 'uhh your policy doesn\'t cover this'},
+    'kitty kat': {'hp': 2, 'defense': 0,'attack': -3, 'damage': 1, 'description': 'aww it\'s so cu- *extends claws*'}
 }
 
 monsters_2_dict = {

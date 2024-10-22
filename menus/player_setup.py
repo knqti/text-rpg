@@ -8,7 +8,7 @@ def player_setup():
     clear_screen()
 
     typewriter('\nWhat is your name?')
-    input_name = input('>>> ').lower().strip()
+    input_name = input('>>> ')
 
     # Initialize the Player object
     Player_obj = init_player(name = input_name)
