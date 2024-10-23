@@ -23,7 +23,7 @@ def display_items(dictionary:dict):
     displayed_list = []
 
     for item in sorted_dict.keys():
-        print(f'- {item.capitalize()}')
+        print(f'- {item.title()}')
         displayed_list.append(item)
     
     return displayed_list

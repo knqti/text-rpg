@@ -35,5 +35,5 @@ def player_setup():
         
     equip(Player_obj, input_weapon, weapons_1_dict)
 
-    typewriter(f'\n{Player_obj.name}, wearing a {input_armor.capitalize()} and wielding a {input_weapon.capitalize()}, begins their adventure...')
+    typewriter(f'\n{Player_obj.name}, wearing a {input_armor.title()} and wielding a {input_weapon.title()}, begins their adventure...')
     return Player_obj

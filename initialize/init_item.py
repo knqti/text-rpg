@@ -3,7 +3,7 @@ from classes import Item
 
 def init_item(item, items_dict:dict):
     stats = items_dict[item.lower()]
-    item_name = item.capitalize()
+    item_name = item.title()
 
     item_instance = Item(
         name = item_name,
