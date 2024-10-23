@@ -1,3 +1,4 @@
+import random
 from utils import display_ascii, typewriter
 from .reduce_hp import reduce_hp
 
@@ -27,6 +28,14 @@ def player_turn(Monster_obj:object, combat_results_dict:dict):
             combat_results_dict.update({'who died': 'monster'})
             combat_results_dict.update({'gets loot': True})
             typewriter(f'\nYou have slain the {Monster_obj.name}, huzzah!')
+        elif Monster_obj.hp <= (Monster_obj.hp * 0.3):
+            hints_list = [
+                'it didn\'t like that',
+                'it\'s not looking so hot',
+                'it seems quite weak now'
+            ]
+            random_hint = random.choice(hints_list)
+            typewriter(random_hint)
             
     else:
         typewriter('\nYour attack misses.')
