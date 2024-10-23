@@ -1,5 +1,6 @@
 import os
 import platform
+import sys
 import time
 
 
@@ -28,12 +29,19 @@ def display_items(dictionary:dict):
     return displayed_list
 
 def display_ascii(file_name, file_suffix):
-    directory_path = './assets/'        
-    full_file_path = directory_path + str(file_name) + file_suffix
+    # If running in a PyInstaller bundle
+    if getattr(sys, '_MEIPASS', False):
+        # Set the path to the temporary folder where PyInstaller extracts assets
+        directory_path = os.path.join(sys._MEIPASS, 'assets')
+    else:
+        # Use the local assets folder when running as a normal Python script
+        directory_path = './assets/'
+    
+    full_file_path = os.path.join(directory_path, str(file_name) + file_suffix)
 
     with open(full_file_path, 'r') as file:
         content = file.read()
-        print(content)
+    print(content)
 
 def player_input(Player_obj:object, acceptable_list:list):
     from menus import help_menu, quit_game, display_player_stats
