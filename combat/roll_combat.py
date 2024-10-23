@@ -6,15 +6,21 @@ def roll_combat(Player_obj:object, Monster_obj:object, combat_results_dict:dict)
     defense_roll = roll(1, 20) + Player_obj.defense + Monster_obj.attack
 
     # Attack against monster
-    if attack_roll >= 12:
+    if attack_roll >= 20:
         attack_result = 'success'
-        attack_damage = Player_obj.damage        
+        attack_damage = Player_obj.damage * 2
+    elif attack_roll >= 12:
+        attack_result = 'success'
+        attack_damage = Player_obj.damage
     else:
         attack_result = 'fail'
         attack_damage = 0
 
     # Defend from monster
-    if defense_roll < 12:
+    if defense_roll <= 1:
+        defense_result = 'fail'
+        receive_damage = Monster_obj.damage * 2
+    elif defense_roll < 12:
         defense_result = 'fail'
         receive_damage = Monster_obj.damage
     else:        

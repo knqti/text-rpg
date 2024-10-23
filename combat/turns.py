@@ -14,6 +14,9 @@ def player_turn(Monster_obj:object, combat_results_dict:dict):
     typewriter('\nAttack roll:')
     display_ascii(attack_roll, '_standard.txt')
     
+    if attack_roll >= 20:
+        print('\nCritical SUCCESS')
+    
     # Player attacks monster
     if combat_results_dict['attack result'] == 'success':
         # Deal damage
@@ -33,6 +36,9 @@ def monster_turn(Player_obj:object, combat_results_dict:dict):
     defense_roll = combat_results_dict['defense roll']
     typewriter('\nDefense roll:')
     display_ascii(defense_roll, '_standard.txt')
+
+    if defense_roll <= 1:
+        print('\nCritical FAIL')
     
     # Monster attacks player
     if combat_results_dict['defense result'] == 'fail':
